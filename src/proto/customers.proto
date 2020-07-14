@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+service CustomerService {
+  rpc find (Empty) returns (CustomerList) {}
+  rpc findById (CustomerRequestId) returns (Customer) {}
+  rpc create (Customer) returns (Customer) {}
+  rpc update (Customer) returns (Customer) {}
+  rpc delete (CustomerRequestId) returns (Customer) {}
+}
+
+message Empty {}
+
+message Customer {
+  optional string id = 1;
+  optional string name = 2;
+  optional int32 age = 3;
+  optional string address = 4;
+}
+
+message CustomerList {
+  repeated Customer result = 1;
+}
+
+message CustomerRequestId {
+  optional string id = 1;
+}
+
+message FilterCustomer {
+  optional int32 limit = 1;
+  optional int32 offset = 2;
+}
